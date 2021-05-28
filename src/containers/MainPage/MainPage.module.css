@@ -1,0 +1,34 @@
+.MainPage{
+    height:1100px;
+    width: 100%;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    margin: 0 auto;
+    background-color: #20bf55;
+    background-image:linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
+
+}
+
+.textarea{
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.Firstdiv{
+    /* height: 70%;
+    width: 70%; */
+    display: flex;
+    flex-direction: column;
+    font-family:fantasy ;
+    position: relative;
+    padding-top: 6%;
+    margin: 0%;
+    padding-left: 30%;
+}
+.Seconddiv{
+    height: auto;
+    padding-left: 45%;
+    /* width: 50%; */
+}

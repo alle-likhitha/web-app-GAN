@@ -1,0 +1,21 @@
+.Images{
+    width: 100%;
+    height: max-content;
+    /* height: fit-content; */
+    /* background-color: #20bf55;
+    background-image:linear-gradient(315deg, #20bf55 0%, #01baef 74%); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.ImgDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.ImgTag{
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+
+}
