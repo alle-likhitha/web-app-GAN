@@ -1,12 +1,13 @@
+
 .MainPage{
-    height:1100px;
+    height:100%;
     width: 100%;
     text-align: center;
     align-self: center;
     align-content: center;
-    margin: 0 auto;
-    background-color: #20bf55;
-    background-image:linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    margin: auto;
+    /* background-color: #20bf55;
+    background-image:linear-gradient(315deg, #20bf55 0%, #01baef 74%); */
 
 
 }
@@ -17,15 +18,15 @@
     
 }
 .Firstdiv{
-    /* height: 70%;
-    width: 70%; */
+    /* /* height: 70%; */
+    width: 65%; 
     display: flex;
     flex-direction: column;
     font-family:fantasy ;
     justify-content: center;
     position: relative;
-    padding-top: 6%;
-    margin: 0%;
+    padding-top: 3%;
+    margin: auto;
     padding-left: 30%;
 }
 .Seconddiv{
@@ -35,7 +36,21 @@
     flex-direction: row;
     /* width: 50%; */
 }
+.Textdiv{
+    width: 50%;
+    justify-content: center;
+    font-family:fantasy ;
+    text-align: center;
+    /* padding-left: 25%; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+}
 .err{
     font-family:fantasy ;
     color: rgb(255, 0, 0);
+}
+.Loading{
+    padding: 40% 50% 50% 50%;
 }

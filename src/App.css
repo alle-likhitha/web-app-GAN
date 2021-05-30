@@ -1,5 +1,12 @@
+html, body, #reactapp, .App {
+  height: 100%;
+  background-color: #01baef;
+  background-image:linear-gradient(100deg, #01baef 0, #20bf55 80%);
+
+}
 .App {
   text-align: center;
+  /* height: 100%;; */
 }
 
 .App-logo {
