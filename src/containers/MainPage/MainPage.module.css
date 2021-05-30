@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     font-family:fantasy ;
+    justify-content: center;
     position: relative;
     padding-top: 6%;
     margin: 0%;
@@ -29,6 +30,12 @@
 }
 .Seconddiv{
     height: auto;
-    padding-left: 45%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
     /* width: 50%; */
+}
+.err{
+    font-family:fantasy ;
+    color: rgb(255, 0, 0);
 }
