@@ -2,17 +2,22 @@ import React, {Component} from 'react';
 import classes from "./MainPage.module.css";
 import Button from '../../ui/Button/Button';
 import {FaEarlybirds} from 'react-icons/fa';
-import Images from '../Images/Images';
+// import Images from '../Images/Images';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
+import {GiHummingbird} from 'react-icons/gi'
+import {Link} from 'react-router-dom';
+
 
 class MainPage extends Component{
     state={
         text : "",
         valu: false,
         err: false,
-        number:null,
-        loading:false
+        number:"",
+        loading:false,
+        images: [],
+        url: "/"
     }
 
     onChangeHandler = ( event ) => {
@@ -26,9 +31,10 @@ class MainPage extends Component{
         // console.log(data)
     }
     
-    onSubmitHandler = () => {
+    onSubmitHandler = (res) => {
         console.log(this.state.text)
         this.setState({valu:true, err:false});
+            //  images:res.imgs, url:res.paths});
     }
     onErrorHandler = ()=>{
         console.log(this.state.err)
@@ -46,13 +52,13 @@ class MainPage extends Component{
         if(this.state.number === null || this.state.number === "0"){
             num = 1;
         }
-        // num = Number(this.state.number);
+        // num = Number(this.state.number);    
         const text = this.state.text;
-        axios.get("http://localhost:9000/main/post-text?text="+text+"&number="+num)
+        axios.get("http://localhost:9090/main/post-text?text="+text+"&number="+num)
         .then(res =>{
-            console.log(res.data);
-            setTimeout(()=>{this.onStopLoading()}, 3000);
-            setTimeout(()=>{this.onSubmitHandler()}, 3000);
+            console.log(res.data);  
+            this.onStopLoading();
+            this.onSubmitHandler(res.data.message);
 
         })
         .catch(err =>{
@@ -71,7 +77,7 @@ class MainPage extends Component{
         let err = null;
         console.log(this.state.number)
         if(this.state.err){
-            err = <h3 className={classes.err}>Text Box is empty! Please add some text.</h3>
+            err = <h3 className={classes.err}>Text Box is empty! Please add some text. (Or) Check the Backend server!</h3>
         }
 
         let imagesa = <div style={{height:"100%"}}>
@@ -84,7 +90,7 @@ class MainPage extends Component{
             <div className={classes.Firstdiv} style={{paddingTop:"10px"}}>
             <p style={{fontSize:"20px"}}>Please enter the number of images required.</p>                
             </div>
-            <input type="text" name="Num" minLength="1" maxLength="2" value={this.state.number} onChange={this.onChangeNumber} />
+            <input type="text" style={{borderRadius:""}} name="Num" minLength="1" maxLength="2" value={this.state.number} onChange={this.onChangeNumber} className={classes.textarea}/>
             <br></br>
             <br></br>
             <div className={classes.Seconddiv} >
@@ -99,11 +105,15 @@ class MainPage extends Component{
         </div>
         
         if(this.state.valu){
-            imagesa = <Images refresh = {this.onRefreshHandler}/>
+            imagesa = <div className={classes.NavItem}>
+                <Link to="/outputs" style={{margin:0, paddingTop:"25%", textDecoration:"none"}} ><Button iconname={{icon: GiHummingbird}}>Continue</Button></Link>
+                </div>
+                
+            // imagesa = <Images refresh = {this.onRefreshHandler} paths = {this.state.images} url={this.state.url}/>
         }
         if(this.state.loading){
             imagesa = <div className={classes.Loading}>
-            <ReactLoading type={"cubes"} color={"black"} height={60} width={60} />
+            <ReactLoading type={"spin"} color={"black"} height={60} width={60} />
             </div>
         }
         

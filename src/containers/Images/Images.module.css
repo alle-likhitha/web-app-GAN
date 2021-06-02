@@ -26,3 +26,7 @@
     font-family:fantasy ;
     color: rgb(255, 0, 0);
 }
+.NavItem {
+    text-decoration: none;
+    padding: 40% 40% 40% 40%;
+}

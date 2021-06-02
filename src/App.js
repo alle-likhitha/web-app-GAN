@@ -1,8 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
 import MainPage from './containers/MainPage/MainPage';
 import Welcome from './containers/Welcome/Welcome';
+import React from 'react';
+import Images from './containers/Images/Images';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
     <Switch>
       <Route path='/' exact component={Welcome} />
       <Route path='/main' exact component={MainPage} />
+      <Route path='/outputs' exact component={Images} />
+      
       <Redirect to='/' />
     </Switch>
   )
@@ -18,20 +21,6 @@ function App() {
   return (
     <div className="App">
      {routes}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
     </div>
   );
 }

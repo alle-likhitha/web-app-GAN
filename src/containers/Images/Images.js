@@ -1,28 +1,63 @@
 import React, {Component} from 'react';
 import classes from "./Images.module.css";
-import ia from '../../assets/images/birdimage.jpg'; 
+// import ia from '../../assets/images/birdimage.jpg'; 
+import {Link} from 'react-router-dom';
 import Button from '../../ui/Button/Button';
 import {GiHummingbird} from 'react-icons/gi'
-
-
 class Images extends Component{
+    state ={
+        images : []
+    }
 
-    
+    importAll=(r) =>{
+        // console.log(r)
+        let images = [];
+        // r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+        r.keys().map((item, index) => { 
+            // console.log(r(item).default)
+            // images[index] = r(item).default; 
+            images.push(r(item).default);
+        });
+        return images;
+      }
+    // alle =()=>{
+    //     const images = this.importAll(require.context('../../assets/testimages', false, /\.(png|jpe?g|svg)$/));
+    //    this.setState({images:images})
+    // }
+    componentDidMount(){
+        this.onImportHandler()
+    }
+    onImportHandler = () =>{
+        let images = []
+          console.log(this.props.url)
+        try{
+            console.log("tryy")
+            images = this.importAll(require.context('../../assets/testimages', false, /\.(png|jpe?g|svg)$/));
+        }
+        catch(err){
+            console.log("The component is loading")
+        }
+        finally{
+            // return images
+            console.log("finallyyy")
+            this.setState({images:images})
+        }
+    }
     render(){
-        function importAll(r) {
-            console.log(r)
-            let images = [];
-            // r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-            r.keys().map((item, index) => { 
-                // console.log(r(item).default)
-                // images[index] = r(item).default; 
-                images.push(r(item).default);
-            });
-            return images;
-          }
           //change the url here to the actual images directory
-          const images = importAll(require.context('../../assets/testimages', false, /\.(png|jpe?g|svg)$/));
-          
+        let images = []
+        //   console.log(this.props.url)
+        // try{
+        //     console.log("tryy")
+        //     images = this.importAll(require.context('../../assets/testimages', false, /\.(png|jpe?g|svg)$/));
+        // }
+        // catch(err){
+        //     console.log("The component is loading")
+        // }
+
+        // images = setTimeout(()=>{this.onImportHandler()}, 10000)
+        images = this.state.images
+        // const images = this.props.paths
         console.log(images)
         // console.log(this.props.data)
         let contents = null
@@ -31,9 +66,11 @@ class Images extends Component{
         //     console.log(idata)
         //     return <div><img className={classes.ImgTag} src={ia} alt="bird" /></div>
         // })
+        let x = 1;
         contents = images.map( idata =>{
             // console.log(idata)
-            return <div className={classes.ImgDiv}>
+            x += 1
+            return <div className={classes.ImgDiv} key={x}>
                 <img className={classes.ImgTag} src={idata} alt="bird" key={idata} />
                 </div>
         })
@@ -49,8 +86,10 @@ class Images extends Component{
         //     </div>
         return(
             <div className={classes.Images}>
-                <Button iconname={{icon: GiHummingbird}} clicked={this.props.refresh}>Go Back</Button>
+                <Link to="/main" className={classes.NavItem}><Button className={classes.NavItem} iconname={{icon: GiHummingbird}}>Go Back</Button></Link>
                 <div className={classes.ImgDiv}>
+                    {/* <p>hii</p> */}
+                
                 {contents}
                 </div>
             </div>
